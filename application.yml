@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active:
+    - dev
+---
+spring:
+  profiles: dev        #dev
+  application:
+    name: microservicecloud-config-xty-dev
+---
+spring:
+  profiles: test    #测试环境
+  application:
+    name: microservicecloud-config-xty-test
+
+#保存为UTF——8
