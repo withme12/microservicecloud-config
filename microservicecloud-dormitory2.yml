@@ -1,0 +1,56 @@
+profiles:
+  active:
+  - dev
+---
+server:
+  port: 8004
+
+
+spring:
+  profiles: dev
+  application:
+    name: microservicecloud-dormitory
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource    # 当前数据源操作类型
+    driver-class-name: com.mysql.jdbc.Driver      # mysql驱动包1
+    url: jdbc:mysql://129.211.74.18:3306/myCloud02  #数据库名称
+    username: bank01
+    password: 123456
+    druid:
+      min-idle: 5                         #数据库连接池的最小维持连接数
+      initial-size: 5                     #初始化连接数
+      max-active: 5                        #最大连接数
+      max-wait: 2000                #等待连接获取的最大超时时间
+  #  jpa:
+  #    database: mysql
+  #    hibernate:
+  #      ddl-auto: update
+  #      dialect: org.hibernate.dialect.MySQL5Dialect
+  #    show-sql: true                   # 第一次建表用create，后面使用update      # 不然每次重新系统工程都会先删除表再新建
+  #  jackson:
+  #    serialization: false
+
+  output:
+    ansi:
+      enabled: detect
+
+eureka:
+  client:
+    service-url:
+      #      defaultZone: http://localhost:7001/eureka
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    instance-id: microservicecloud-dormitory8004-hystrix          #修改服务名称hystrix相关的别名
+    prefer-ip-address: true       #访问路径可以显示IP地址
+
+
+info:
+  app.name: xty-microservicecloud
+  company.name: www.xty.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+
+mybatis:
+  mapper-locations: classpath:/mapper/**/*.xml        # mapper映射文件
+  config-location: classpath:/mybatis.cfg.xml         # mybatis配置文件路径
+#  type-aliases-package: com.xty.springcloud.entities  #所有Entity别名类所在包         这句老报错？？？？？

@@ -1,0 +1,40 @@
+profiles:
+  active:
+  - dev
+---
+server:
+  port: 6677
+spring:
+  profiles: dev
+  application:
+    name: microservicecloud-zuul-gateway
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
+  instance:
+    instance-id: gateway-6677.com
+    prefer-ip-address: true
+
+
+zuul:
+  prefix: /xty   #公共前缀
+  #ignored-services: microservicecloud-dept
+  ignored-services: "*"  #隐藏所有真实地址
+  routes:   #域名映射
+    mydorm.serviceId: microservicecloud-dormitory
+    mydorm.path: /mydorm/**
+    mystu.serviceId: microservicecloud-student
+    mystu.path: /mystu/**
+
+
+
+info:       #可写可不写，描述信息
+  app.name: xty-microservicecloud
+  company.name: www.xty.com
+  build.artifactId: $project.artifactId$
+  build.vsrsion: $project.version$
+
+
+
