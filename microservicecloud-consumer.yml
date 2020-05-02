@@ -3,7 +3,7 @@ profiles:
   - dev
 ---
 server:
-  port: 81
+  port: 89
 
 spring:
   profiles: dev
@@ -11,7 +11,7 @@ spring:
 eureka:
   client:
     register-with-eureka: false
-    service-url:
+    serviceUrl:
       defaultZone: http://129.211.74.18:7001/eureka/,http://129.211.74.18:7002/eureka/,http://129.211.74.18:7003/eureka/
 
 
