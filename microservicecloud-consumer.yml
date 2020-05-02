@@ -3,20 +3,41 @@ profiles:
   - dev
 ---
 server:
-  port: 89
-
+  port: 8007
+#
+#
+#
 spring:
   profiles: dev
-
+  application:
+    name: microservicecloud-consumer
+    
 eureka:
   client:
     register-with-eureka: false
-    serviceUrl:
-      defaultZone: http://129.211.74.18:7001/eureka/
-      # defaultZone: http://129.211.74.18:7001/eureka/,http://129.211.74.18:7002/eureka/,http://129.211.74.18:7003/eureka/
-
-
-
+    service-url:
+      # defaultZone: http://129.211.74.18:7001/eureka/
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+#
+#
+#
 feign:
   hystrix:
     enabled: true
+    
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+      circuitBreaker:
+        sleepWindowInMilliseconds: 300000
+        forceClosed: true
+        #请求处理的超时时间  add by six-vision
+ribbon:
+  ReadTimeout: 300000
+  SocketTimeout: 300000
+  #请求连接的超时时间
+  ConnectTimeout: 30000
