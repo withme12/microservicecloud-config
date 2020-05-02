@@ -4,8 +4,9 @@ profiles:
 ---
 server:
   port: 8001
+
+
 spring:
-  profiles: dev
   application:
     name: microservicecloud-student
   datasource:
@@ -19,36 +20,36 @@ spring:
       initial-size: 5                     #初始化连接数
       max-active: 5                        #最大连接数
       max-wait: 2000                #等待连接获取的最大超时时间
-  jpa:
-    database: mysql
-    hibernate:
-      ddl-auto: update
-      dialect: org.hibernate.dialect.MySQL5Dialect
-    show-sql: true                   # 第一次建表用create，后面使用update      # 不然每次重新系统工程都会先删除表再新建
-  jackson:
-    serialization: false
-
-  output:
-    ansi:
-      enabled: detect
-
+#  jpa:
+#    database: mysql
+#    hibernate:
+#      ddl-auto: update
+#      dialect: org.hibernate.dialect.MySQL5Dialect
+#    show-sql: true                   # 第一次建表用create，后面使用update      # 不然每次重新系统工程都会先删除表再新建
+#  jackson:
+#    serialization: false
+#
+#  output:
+#    ansi:
+#      enabled: detect
+#
 eureka:
   client:
     service-url:
-      # defaultZone: http://129.211.74.18:7001/eureka
-      defaultZone: http://129.211.74.18:7001/eureka/,http://129.211.74.18:7002/eureka/,http://129.211.74.18:7003/eureka/
+      # defaultZone: http://localhost:7001/eureka
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
   instance:
     instance-id: microservicecloud-student8001-hystrix          #修改服务名称hystrix相关的别名
     prefer-ip-address: true       #访问路径可以显示IP地址
-
-
-info:
-  app.name: xty-microservicecloud
-  company.name: www.xty.com
-  build.artifactId: $project.artifactId$
-  build.version: $project.version$
+#
+#
+#info:
+#  app.name: xty-microservicecloud
+#  company.name: www.xty.com
+#  build.artifactId: $project.artifactId$
+#  build.version: $project.version$
 mybatis:
   mapper-locations: classpath:/mapper/**/*.xml        # mapper映射文件
-  config-location: classpath:/mybatis.cfg.xml         # mybatis配置文件路径
+#  config-location: classpath:/mybatis.cfg.xml         # mybatis配置文件路径
 #  type-aliases-package: com.xty.springcloud.entities  #所有Entity别名类所在包
 
