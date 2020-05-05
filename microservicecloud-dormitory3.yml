@@ -36,8 +36,8 @@ spring:
 eureka:
   client:
     service-url:
-      #      defaultZone: http://localhost:7001/eureka
-      defaultZone: http://129.211.74.18:7001/eureka/,http://129.211.74.18:7002/eureka/,http://129.211.74.18:7003/eureka/
+      defaultZone: http://localhost:7001/eureka
+      # defaultZone: http://129.211.74.18:7001/eureka/,http://129.211.74.18:7002/eureka/,http://129.211.74.18:7003/eureka/
   instance:
     instance-id: microservicecloud-dormitory8005-hystrix          #修改服务名称hystrix相关的别名
     prefer-ip-address: true       #访问路径可以显示IP地址
