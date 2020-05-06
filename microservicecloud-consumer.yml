@@ -25,17 +25,20 @@ feign:
   hystrix:
     enabled: true
     
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 500000
-      circuitBreaker:
-        sleepWindowInMilliseconds: 300000
-        forceClosed: true
-        请求处理的超时时间  add by six-vision
+# hystrix:
+#   command:
+#     default:
+#       execution:
+#         isolation:
+#           thread:
+#             timeoutInMilliseconds: 500000
+#       circuitBreaker:
+#         sleepWindowInMilliseconds: 300000
+#         forceClosed: true
+        # 请求处理的超时时间  add by six-vision
+
+
+        
 ribbon:
   ReadTimeout: 300000
   SocketTimeout: 300000
@@ -43,35 +46,38 @@ ribbon:
   ConnectTimeout: 30000
 
 
-# spring:
-#   cloud:
-#     loadbalancer:
-#       retry:
-#         enabled: true
+feign:
+  hystrix:
+    enabled: true
+  httpclient:
+    enabled: true
+    max-connections: 200
+    max-connections-per-route: 50
+    time-to-live: 900
 
-# hystrix:
-#   command:
-#     default:
-#       execution:
-#         isolation:
-#           thread:
-#             timeoutInMilliseconds: 70000
-#         timeout:
-#           enabled: false
+spring:
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
 
-# ribbon:
-#   ConnectTimeout: 30000
-#   ReadTimeout: 30000
-#   OkToRetryOnAllOperations: true
-#   MaxAutoRetriesNextServer: 2
-#   maxAutoRetries: 1
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+        timeout:
+          enabled: false
 
-
-# feign:
-#   hystrix:
-#     enabled: true
-#   httpclient:
-#     enabled: true
-#     max-connections: 200
-#     max-connections-per-route: 50
-#     time-to-live: 900
+ribbon:
+  OkToRetryOnAllOperations: true
+  MaxAutoRetriesNextServer: 2
+  maxAutoRetries: 1
+  eager-load:
+    clients:
+      - microservicecloud-student
+      - microservicecloud-dormitory
+  ConnectTimeout: 20000
+  ReadTimeout: 20000
