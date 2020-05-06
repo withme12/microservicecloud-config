@@ -25,19 +25,53 @@ feign:
   hystrix:
     enabled: true
     
+# hystrix:
+#   command:
+#     default:
+#       execution:
+#         isolation:
+#           thread:
+#             timeoutInMilliseconds: 500000
+#       circuitBreaker:
+#         sleepWindowInMilliseconds: 300000
+#         forceClosed: true
+        #请求处理的超时时间  add by six-vision
+# ribbon:
+#   ReadTimeout: 300000
+#   SocketTimeout: 300000
+#   #请求连接的超时时间
+#   ConnectTimeout: 30000
+
+
+spring:
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+
 hystrix:
   command:
     default:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 5000
-      circuitBreaker:
-        sleepWindowInMilliseconds: 300000
-        forceClosed: true
-        #请求处理的超时时间  add by six-vision
+            timeoutInMilliseconds: 70000
+        timeout:
+          enabled: false
+
 ribbon:
-  ReadTimeout: 300000
-  SocketTimeout: 300000
-  #请求连接的超时时间
   ConnectTimeout: 30000
+  ReadTimeout: 30000
+  OkToRetryOnAllOperations: true
+  MaxAutoRetriesNextServer: 2
+  maxAutoRetries: 1
+
+
+feign:
+  hystrix:
+    enabled: true
+  httpclient:
+    enabled: true
+    max-connections: 200
+    max-connections-per-route: 50
+    time-to-live: 900
