@@ -2,10 +2,8 @@ profiles:
   active:
   - dev
 ---
-
 server:
   port: 8007
-
 spring:
   profiles: dev
   application:
@@ -13,16 +11,16 @@ spring:
     
 eureka:
   client:
-    register-with-eureka: false
+    # register-with-eureka: false
     service-url:
       defaultZone: http://129.211.74.18:7001/eureka
       # defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
 #
 #
 #
-feign:
-  hystrix:
-    enabled: true
+# feign:
+#   hystrix:
+#     enabled: true
     
 # hystrix:
 #   command:
@@ -38,11 +36,11 @@ feign:
 
 
         
-ribbon:
-  ReadTimeout: 300000
-  SocketTimeout: 300000
-  #请求连接的超时时间
-  ConnectTimeout: 30000
+# ribbon:
+#   ReadTimeout: 300000
+#   SocketTimeout: 300000
+#   #请求连接的超时时间
+#   ConnectTimeout: 30000
 
 
 feign:
